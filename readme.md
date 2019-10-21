@@ -16,12 +16,12 @@ A aplicação é separada em dois módulos principais e dependentes entre si, po
 ### Cidadão de Olho
 
 Neste módulo é onde ocorre a interação com usuários, sendo sua parte principal o front-end e conexão com a API. 
-[Cidadão de Olho](https://github.com/MicaelBarreto/Cidadao-de-olho).
+[Cidadão de Olho](https://github.com/MicaelBarreto/Cidadao-de-olho)
 
 ### Cidadão de Olho API
 
 Neste módulo é onde ocorre a interação incial com o web service do governo de Minas Gerais, sendo sua parte principal o back-end e as regras de negócio. 
-[Cidadão de Olho API](https://github.com/MicaelBarreto/Cidadao-de-olho-api).
+[Cidadão de Olho API](https://github.com/MicaelBarreto/Cidadao-de-olho-api)
 
 # Instalação e configuração 
 
