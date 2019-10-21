@@ -1,31 +1,36 @@
 @extends('layouts.app')
 
 @section('head')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">    
-    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">    
 @endsection
+
+@section('title', 'Deputados')
 
 @section('content')
 
     <div>
         <h2>Deputados em exercício</h2>
-        <table class="table-striped" id="table">
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Partido</th>
-                <th>Ações</th>
-            </tr>
-            @foreach ($deputados as $deputado)
+        <table class="table col-sm col-md col-lg col-xl" id="table">
+            <thead>
                 <tr>
-                    <td>{{$deputado['id']}}</td>
-                    <td>{{$deputado['nome']}}</td>
-                    <td>{{$deputado['partido']}}</td>
-                    <td>
-                        <a href="/deputado/{{$deputado['id']}}" class="btn btn-primary">Vizualizar</a>
-                    </td>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Partido</th>
+                    <th>Ações</th>
                 </tr>
-            @endforeach
+            </thead>
+            <tbody>
+                @foreach ($deputados as $deputado)
+                    <tr>
+                        <td>{{$deputado['id']}}</td>
+                        <td>{{$deputado['nome']}}</td>
+                        <td>{{$deputado['partido']}}</td>
+                        <td>
+                            <a href="/deputado/{{$deputado['id']}}" class="btn btn-primary">Vizualizar</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
         </table>
     </div>
     

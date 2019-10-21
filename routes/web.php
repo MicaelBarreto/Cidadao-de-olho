@@ -17,3 +17,4 @@ Route::get('/', function () {
 Route::get('/deputados', 'DeputadoController@index');
 Route::get('/deputado/{id}', 'DeputadoController@show');
 Route::get('/rankings', 'RankingController@index');
+Route::get('/rankings/{id}', 'RankingController@search');

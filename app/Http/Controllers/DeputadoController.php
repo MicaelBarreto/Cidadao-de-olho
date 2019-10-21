@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Deputado;
 use Illuminate\Http\Request;
 
 class DeputadoController extends Controller
@@ -34,15 +33,18 @@ class DeputadoController extends Controller
      */
     public function show($id)
     {
-        $ch = curl_init('http://localhost:8001/api/deputados/'+$id);
+        $ch = curl_init('http://localhost:8001/api/deputados/'.$id);
         curl_setopt($ch, CURLOPT_TIMEOUT, 5);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $json_deputados = curl_exec($ch);
         curl_close($ch);
 
-        $deputado = json_decode($json_deputados, true);
+        $query = json_decode($json_deputados, true);
+        $deputado = $query['deputado'];
+        $indenizacoes = $query['indenizacoes'];
+        $midias = $query['midias'];
 
-        return view('deputados.deputado', compact('deputado'));
+        return view('deputados.deputado', compact('deputado', 'indenizacoes', 'midias'));
     }
 }

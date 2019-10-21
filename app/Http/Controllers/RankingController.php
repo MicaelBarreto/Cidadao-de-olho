@@ -13,20 +13,28 @@ class RankingController extends Controller
      */
     public function index()
     {
-        $midias = Midia::join('deputados_midias', 'midias.id', 'deputados_midias.midia_id')
-                        ->orderBy('deputados_midias.midia_id', 'desc')
-                        ->limit(5)
-                        ->get();
+        $ch = curl_init('http://localhost:8001/api/rankings');
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $json_deputados = curl_exec($ch);
+        curl_close($ch);
 
-        $deputados = QueryMonth::query(Carbon::now()->format('m'));
+        $query = json_decode($json_deputados, true);
+        $deputados = $query['deputados'];
+        $midias = $query['midias'];
 
-        return response()->json(compact('midias', 'deputados'), 200);
+        return view('rankings.index', compact('deputados', 'midias'));
     }
 
-    public function dataChange($month)
-    {
-        $deputados = QueryMonth::query($month);
+    public function search($month) {
+        $ch = curl_init('http://localhost:8001/api/rankings/'.$month);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $json_deputados = curl_exec($ch);
+        curl_close($ch);
 
-        return response()->json($deputados);
+        return response()->json($json_deputados);
     }
 }
